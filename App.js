@@ -2,23 +2,30 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState } from 'react';
 import CourseInput from './components/courseinput';
+
 export default function App() {
-  const [modalIsVisibe, setModalIsVisible] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
   const startModal = () => {
     setModalIsVisible(true);
-  }
+  };
+
+  const closeModal = () => {
+    setModalIsVisible(false);
+  };
+
   return (
     <>
       <StatusBar style="light" />
       <View style={styles.container}>
         <Text style={styles.title}>Ali Can Yücel Course App</Text>
         <Button
-          title='Kurs Ekle'
+          title="Kurs Ekle"
           color="red"
           onPress={startModal}
           style={styles.button}
         />
-        <CourseInput visible={modalIsVisibe} />
+        <CourseInput visible={modalIsVisible} onClose={closeModal} />
       </View>
     </>
   );
