@@ -1,6 +1,6 @@
 import { StyleSheet,Text,View } from "react-native";
 import React from "react";
-export default function CourseInput()
+export default function CourseInput({visible})
 {
     return(
         <View>
