@@ -8,18 +8,19 @@ export default function CourseInput({ visible, onClose }) {
       transparent={true}
       visible={visible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
+        Alert.alert('Modal kapatıldı.');
         onClose();
-      }}>
-      <View style={styles.inputContiner}>
-        <image style={styles.image} source={require('../assets/icon.png')} />
-        <TextInput style={styles.TextInput} placeholder="Yeni Kurs ekle" />
+      }}
+    >
+      <View style={styles.inputContainer}>
+        <Image style={styles.image} source={require('../assets/icon.png')} />
+        <TextInput style={styles.textInput} placeholder="Yeni Kurs Ekle" />
         <View style={styles.buttonContainer}>
-          <View style={styles.button}> 
-            <Button title="İptal Et" color="red" />
+          <View style={styles.button}>
+            <Button title="İptal Et" color="red" onPress={onClose} />
           </View>
-          <View style={styles.button}> 
-            <Button title="Ekle" color="blue" />
+          <View style={styles.button}>
+            <Button title="Ekle" color="blue" onPress={() => Alert.alert("Kurs eklendi!")} />
           </View>
         </View>
       </View>
