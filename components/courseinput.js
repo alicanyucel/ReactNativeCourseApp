@@ -1,40 +1,65 @@
-import React from "react";
-import { StyleSheet, Text, Button, View, Modal, Alert, Image, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  Button,
+  View,
+  Modal,
+  Alert,
+  Image,
+  TextInput,
+} from "react-native";
 
-// Spacer component tanımı
 function Spacer({ height = 20 }) {
   return <View style={{ height }} />;
 }
 
-export default function CourseInput({ visible, onClose }) {
+export default function CourseInput({ visible, onClose, onAddCourse }) {
+  const [enteredCourseText, setEnteredCourseText] = useState('');
+
+  const addCourseHandler = () => {
+    onAddCourse(enteredCourseText);
+    if (enteredCourseText.trim().length === 0) {
+      Alert.alert("Lütfen bir kurs adı girin.");
+      return;
+    }
+    onAddCourse(enteredCourseText);
+    setEnteredCourseText("");
+    onClose();
+  };
+
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={visible}
       onRequestClose={() => {
-        Alert.alert('Modal kapatıldı.');
+        Alert.alert("Modal kapatıldı.");
         onClose();
       }}
     >
       <View style={styles.inputContainer}>
-        <Image style={styles.image} source={require('../assets/acy.jpeg')} />
+        <Image style={styles.image} source={require("../assets/acy.jpeg")} />
         <Spacer height={20} />
-        <TextInput style={styles.textInput} placeholder="Kurs Ekle" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Kurs Ekle"
+          value={enteredCourseText}
+          onChangeText={setEnteredCourseText}
+        />
         <Spacer height={20} />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button title="İptal Et" color="red" onPress={onClose} />
           </View>
           <View style={styles.button}>
-            <Button title="Ekle" color="blue" onPress={() => Alert.alert("Kurs eklendi!")} />
+            <Button title="Ekle" color="blue" onPress={addCourseHandler} />
           </View>
         </View>
       </View>
     </Modal>
   );
 }
-
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
