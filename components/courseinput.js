@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
+import { StyleSheet, Text, View, Modal, Alert } from "react-native";
 
 export default function CourseInput({ visible, onClose }) {
   return (
@@ -7,17 +7,13 @@ export default function CourseInput({ visible, onClose }) {
       animationType="slide"
       transparent={true}
       visible={visible}
-      onRequestClose={onClose}
-    >
+      onRequestClose={() => {
+        Alert.alert('Modal has been closed.');
+        onClose(); // modal'ı kapatmak için parent'tan gelen fonksiyon
+      }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Merhaba Dünya</Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={onClose}
-          >
-            <Text style={styles.textStyle}>Gizle</Text>
-          </Pressable>
+          <Text style={styles.modalText}>Merhaba</Text>
         </View>
       </View>
     </Modal>

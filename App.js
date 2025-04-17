@@ -13,7 +13,7 @@ export default function App() {
   const closeModal = () => {
     setModalIsVisible(false);
   };
-
+// react native de modal kullanım örneği
   return (
     <>
       <StatusBar style="light" />
