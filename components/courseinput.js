@@ -18,7 +18,7 @@ export default function CourseInput({ visible, onClose }) {
       }}
     >
       <View style={styles.inputContainer}>
-        <Image style={styles.image} source={require('../assets/icon.png')} />
+        <Image style={styles.image} source={require('../assets/acy.jpeg')} />
         <Spacer height={20} />
         <TextInput style={styles.textInput} placeholder="Kurs Ekle" />
         <Spacer height={20} />
