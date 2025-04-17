@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Modal, Alert } from "react-native";
+import { StyleSheet, Text, Button, View, Modal, Alert, Image, TextInput } from "react-native";
 
 export default function CourseInput({ visible, onClose }) {
   return (
@@ -9,52 +9,27 @@ export default function CourseInput({ visible, onClose }) {
       visible={visible}
       onRequestClose={() => {
         Alert.alert('Modal has been closed.');
-        onClose(); // modal'ı kapatmak için parent'tan gelen fonksiyon
+        onClose();
       }}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>Merhaba</Text>
+      <View style={styles.inputContiner}>
+        <image style={styles.image} source={require('../assets/icon.png')} />
+        <TextInput style={styles.TextInput} placeholder="Yeni Kurs ekle" />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}> 
+            <Button title="İptal Et" color="red" />
+          </View>
+          <View style={styles.button}> 
+            <Button title="Ekle" color="blue" />
+          </View>
         </View>
       </View>
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-    marginTop: 15,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
+const styles=StyleSheet.create({
+  inputContiner:{},
+  image:{},
+  TextInput:{},
+  buttonContainer:[],
+  button:{},
+})
