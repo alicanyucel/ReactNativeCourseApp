@@ -16,7 +16,6 @@ function Spacer({ height = 20 }) {
 
 export default function CourseInput({ visible, onClose, onAddCourse }) {
   const [enteredCourseText, setEnteredCourseText] = useState('');
-
   const addCourseHandler = () => {
     if (enteredCourseText.trim().length === 0) {
       Alert.alert("Lütfen bir kurs adı girin.");

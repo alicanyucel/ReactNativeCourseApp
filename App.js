@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, FlatList, Text, View, Button } from 'react-native';
 import { useState } from 'react';
 import CourseInput from './components/courseinput';
 
@@ -11,18 +11,16 @@ export default function App() {
     setModalIsVisible(true);
   };
 
-  const endModal = () => {
-    setModalIsVisible(false);
-  };
   const closeModal = () => {
     setModalIsVisible(false);
-    endModal();
   };
-;
-const addCourse = (courseTitle) => {
- console.log(courseTitle);
-};
-;
+
+  const addCourse = (courseTitle) => {
+    setCourses((currentCourses) => [
+      ...currentCourses,
+      { text: courseTitle, id: Math.random().toString() },
+    ]);
+  };
 
   return (
     <>
@@ -32,10 +30,21 @@ const addCourse = (courseTitle) => {
         <View style={styles.button}>
           <Button title="Kurs Ekle" color="red" onPress={startModal} />
         </View>
+
         <CourseInput
           visible={modalIsVisible}
           onAddCourse={addCourse}
           onClose={closeModal}
+        />
+
+        <FlatList
+          data={courses}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.courseItem}>
+              <Text style={styles.courseText}>{item.text}</Text>
+            </View>
+          )}
         />
       </View>
     </>
@@ -60,5 +69,14 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 40,
     alignSelf: 'center',
+  },
+  courseItem: {
+    backgroundColor: '#f1f1f1',
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 6,
+  },
+  courseText: {
+    fontSize: 16,
   },
 });
