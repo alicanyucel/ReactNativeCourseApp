@@ -18,12 +18,12 @@ export default function CourseInput({ visible, onClose, onAddCourse }) {
   const [enteredCourseText, setEnteredCourseText] = useState('');
 
   const addCourseHandler = () => {
-    onAddCourse(enteredCourseText);
     if (enteredCourseText.trim().length === 0) {
       Alert.alert("Lütfen bir kurs adı girin.");
       return;
     }
-    onAddCourse(enteredCourseText);
+
+    onAddCourse(enteredCourseText); 
     setEnteredCourseText("");
     onClose();
   };
@@ -60,6 +60,7 @@ export default function CourseInput({ visible, onClose, onAddCourse }) {
     </Modal>
   );
 }
+
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '80%',
-    marginTop:30,
+    marginTop: 30,
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,

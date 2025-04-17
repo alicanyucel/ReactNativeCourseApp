@@ -11,16 +11,18 @@ export default function App() {
     setModalIsVisible(true);
   };
 
-  const closeModal = () => {
+  const endModal = () => {
     setModalIsVisible(false);
   };
-
-  const addCourse = (courseText) => {
-    setCourses((currentCourses) => [
-      ...currentCourses,
-      { id: Math.random().toString(), text: courseText },
-    ]);
+  const closeModal = () => {
+    setModalIsVisible(false);
+    endModal();
   };
+;
+const addCourse = (courseTitle) => {
+ console.log(courseTitle);
+};
+;
 
   return (
     <>
